@@ -29,22 +29,34 @@
 
 /* ===== Base ===== */
 body{
-  background:linear-gradient(135deg,var(--bg-start) 0%,var(--bg-end) 100%);
+  background:linear-gradient(135deg,var(--water) 0%, var(--primary-700) 100%);
   font-family:'Segoe UI',Arial,sans-serif;
   color:var(--text);
   margin:0; padding:0; min-height:100vh;
 }
 
-h1,h2,h3{
+h1,h3{
   color:var(--primary-600);
   text-align:center;
   margin-top:24px;
 }
 
+h2{
+  color:var(--primary-100);
+  text-align:center;
+  margin-top:24px;
+}
+
 .container{
-  max-width:800px; margin:40px auto; background:var(--surface);
+  max-width:800px; margin:40px auto; background:linear-gradient(135deg,var(--water) 0%, var(--primary-700) 100%);
   border-radius:16px; box-shadow:var(--shadow); padding:32px;
   border:1px solid var(--border);
+}
+
+.loading{
+  text-align:center; color:#fff; font-size:1.2rem; margin-top:40px;
+  animation:fadeIn .6s ease-out;
+  
 }
 
 /* ===== Nav ===== */
@@ -99,6 +111,34 @@ h1,h2,h3{
   background-color:var(--primary-700);
   transform:translateY(-2px) scale(1.02);
   box-shadow:0 6px 16px rgba(0,0,0,0.12);
+}
+
+.pagination{
+  display:flex; justify-content:center; gap:16px; margin-top:24px;
+}
+
+.pagination button{
+  background-color:var(--primary-600);
+  border:1px solid var(--primary-700);
+  color:#fff; cursor:pointer; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,0.08);
+  transition:transform .2s, background .2s, box-shadow .2s;
+  padding:8px 16px; font-size:16px;
+}
+
+.pagination button:hover{
+  background-color:var(--primary-700);
+  transform:translateY(-2px) scale(1.02);
+  box-shadow:0 6px 16px rgba(0,0,0,0.12);
+  cursor: pointer;
+}
+
+.pagination button:disabled{
+  background-color:var(--border);
+  border-color:var(--border);
+  color:var(--muted);
+  cursor:default;
+  transform:none;
+  box-shadow:none;
 }
 
 /* ===== Detalle de Pokémon ===== */

@@ -1,5 +1,8 @@
+import LoadingPage from "./components/LoadingPage";
 
 
 export default function Loading() {
-  return <p>Cargando Pokemons...</p>;
+  return (
+    <LoadingPage />
+  );
 }

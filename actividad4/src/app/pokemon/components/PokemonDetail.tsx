@@ -1,7 +1,6 @@
 
 import NavBar from '@/app/NavBar';
 import { Pokemon } from '@/app/Pokemon';
-import Link from 'next/link';
 import React from 'react'
 
 interface PokemonProps {

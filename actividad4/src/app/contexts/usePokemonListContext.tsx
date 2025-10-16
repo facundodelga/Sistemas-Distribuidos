@@ -2,10 +2,11 @@
 
 import React, { createContext, useContext } from 'react';
 import { useQuery, QueryClient, QueryClientProvider } from '@tanstack/react-query';
-import { PokemonSummary } from '../Pokemon';
+import { PokemonListResponse, PokemonSummary } from '../Pokemon';
+import { fetchPokemons, LIMIT } from '../services/pokemonServices';
 
 type PokemonListContextType = {
-    pokemons: PokemonSummary[] | undefined;
+    pokemons: PokemonListResponse[] | undefined;
     isLoading: boolean;
     error: unknown;
     offset: number;
@@ -14,15 +15,6 @@ type PokemonListContextType = {
 };
 
 const PokemonListContext = createContext<PokemonListContextType | undefined>(undefined);
-
-const LIMIT = 30;
-
-const fetchPokemons = async (offset: number): Promise<PokemonSummary[]> => {
-    const res = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=${LIMIT}&offset=${offset}`, { cache: 'no-store' });
-    if (!res.ok) throw new Error('No se pudo obtener la lista');
-    const data = await res.json();
-    return data.results as PokemonSummary[];
-};
 
 export const PokemonListProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const [offset, setOffset] = React.useState(0);
@@ -44,6 +36,7 @@ export const PokemonListProvider: React.FC<{ children: React.ReactNode }> = ({ c
         </PokemonListContext.Provider>
     );
 };
+
 
 export const usePokemonList = () => {
     const ctx = useContext(PokemonListContext);

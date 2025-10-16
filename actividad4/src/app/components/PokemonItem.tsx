@@ -1,7 +1,7 @@
-import { use, useEffect, useState } from "react";
-import { PokemonSumary, PokemonListResponse } from "./Pokemon";
-import axios from "axios";
+import { useEffect, useState } from "react";
+import { PokemonSummary, PokemonListResponse } from "../Pokemon";
 import Link from "next/link";
+import { fetchPokemonSummary } from "../services/pokemonServices";
 
 interface PokemonItemProps {
     pokemonItem: PokemonListResponse;
@@ -11,17 +11,14 @@ interface PokemonItemProps {
 
 const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCount }) => {
     const { id, name, url } = pokemonItem;
-    const [pokemonData, setPokemonData] = useState<PokemonSumary[]>([]);
+    const [pokemonData, setPokemonData] = useState<PokemonSummary[]>([]);
+
     useEffect(() => {
-        console.log(`Pokemon ${name} renderizado`);
-        axios.get(url)
+        fetchPokemonSummary(url)
             .then(res => {
-
-
-                setPokemonData(res.data.abilities as PokemonSumary[]);
+                setPokemonData(res);
             })
             .catch(() => console.log("Error fetching pokemon data"));
-        console.log()
     }, []);
 
     const renderAbilities = () => {
@@ -59,7 +56,6 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
                     Ver detalles
                 </Link>
                 
-
             </button>
         </div>
 
