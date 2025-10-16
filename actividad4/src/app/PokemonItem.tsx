@@ -1,24 +1,26 @@
 import { use, useEffect, useState } from "react";
-import { PokemonAbility, PokemonListResponse } from "./Pokemon";
+import { PokemonSumary, PokemonListResponse } from "./Pokemon";
 import axios from "axios";
+import Link from "next/link";
 
 interface PokemonItemProps {
     pokemonItem: PokemonListResponse;
-    onClick: () => void;
+    onClick: (id: number) => void;
     usageCount: number;
 }
 
 const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCount }) => {
-    const {name, url} = pokemonItem;
-    const [pokemonData, setPokemonData] = useState<PokemonAbility[]>([]);
+    const { id, name, url } = pokemonItem;
+    const [pokemonData, setPokemonData] = useState<PokemonSumary[]>([]);
     useEffect(() => {
         console.log(`Pokemon ${name} renderizado`);
         axios.get(url)
-        .then(res => {
-            console.log(res.data.abilities);
-            setPokemonData(res.data.abilities as PokemonAbility[]);
-        })
-        .catch(() => console.log("Error fetching pokemon data"));
+            .then(res => {
+
+
+                setPokemonData(res.data.abilities as PokemonSumary[]);
+            })
+            .catch(() => console.log("Error fetching pokemon data"));
         console.log()
     }, []);
 
@@ -36,9 +38,9 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
 
     return (
         <div>
-            
+
             <button
-                onClick={onClick}
+                onClick={() => onClick(id)}
                 className="boton-pokemon"
             >
                 <div>
@@ -53,6 +55,11 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
                 <div>
                     <b>Veces usado:</b> {usageCount}
                 </div>
+                <Link href={`/pokemon/${id}`} className="detalle-button">
+                    Ver detalles
+                </Link>
+                
+
             </button>
         </div>
 

@@ -9,8 +9,18 @@ const PokemonList: React.FC = () => {
     const [usages, setUsages] = useState<UsageMap>({});
 
     useEffect(() => {
-        axios.get('https://pokeapi.co/api/v2/pokemon?limit=20')
-            .then(res => setPokemons(res.data.results))
+        axios.get('https://pokeapi.co/api/v2/pokemon?limit=22')
+            .then(res => {
+                console.log(res.data.results);
+                const pokemonsWithId = res.data.results.map((pokemon: PokemonListResponse) => {
+                    const urlParts = pokemon.url.split('/').filter(Boolean);
+                    const id = urlParts[urlParts.length - 1];
+                    console.log(id);
+                    return { ...pokemon, id };
+                });
+                
+                setPokemons(pokemonsWithId);
+            })
             .catch(() => setPokemons([]));
     }, []);
 
@@ -19,12 +29,14 @@ const PokemonList: React.FC = () => {
             ...prev,
             [name]: (prev[name] || 0) + 1
         }));
+        console.log(`Pokemon ${name} clickeado`);
+        
     };
 
     return (
-        <div>
+        <div className="pokemon-container">
             <h2>Listado de Pokemons</h2>
-            <ul>
+            <ul className='pokemon-list'>
                 {pokemons.map(pokemon => (
                     <li key={pokemon.name}>
                         <PokemonItem
