@@ -5,7 +5,7 @@ export type PokemonListResponse = {
 
 };
 
-export type PokemonSumary = {
+export type PokemonSummary = {
     id: number;
     ability: {
         name: string;
