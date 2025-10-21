@@ -2,17 +2,15 @@ export type PokemonListResponse = {
     id: number;
     name: string;
     url: string;
-
+    
 };
 
 export type PokemonSummary = {
-    id: number;
-    ability: {
-        name: string;
-        url: string;
+    habilities: Ability[];
+    sprites: { 
+      front_default: string | null,
+      front_shiny: string | null
     };
-    is_hidden: boolean;
-    slot: number;
 };
 
 

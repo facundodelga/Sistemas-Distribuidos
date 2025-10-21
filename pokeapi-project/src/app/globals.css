@@ -23,7 +23,7 @@
   --shadow:0 4px 24px rgba(0,0,0,0.08);
 
   --card-width:400px;
-  --card-height:400px;
+  --card-height:600px;
   --card-padding:1.5rem;
 }
 
@@ -139,6 +139,11 @@ h2{
   cursor:default;
   transform:none;
   box-shadow:none;
+}
+
+.favorito-button{
+  position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.8);
+  border:none; border-radius:50%; padding:8px; cursor:pointer; transition:background .2s;
 }
 
 /* ===== Detalle de Pokémon ===== */

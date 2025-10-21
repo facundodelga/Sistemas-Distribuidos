@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
-import { PokemonSummary, PokemonListResponse } from "../Pokemon";
+import { PokemonSummary, PokemonListResponse, Ability } from "../Pokemon";
 import Link from "next/link";
 import { fetchPokemonSummary } from "../services/pokemonServices";
+import { FavoriteButton } from "./FavoriteButton";
 
 interface PokemonItemProps {
     pokemonItem: PokemonListResponse;
@@ -11,7 +12,7 @@ interface PokemonItemProps {
 
 const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCount }) => {
     const { id, name, url } = pokemonItem;
-    const [pokemonData, setPokemonData] = useState<PokemonSummary[]>([]);
+    const [pokemonData, setPokemonData] = useState<PokemonSummary | null>(null);
 
     useEffect(() => {
         fetchPokemonSummary(url)
@@ -21,8 +22,8 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
             .catch(() => console.log("Error fetching pokemon data"));
     }, []);
 
-    const renderAbilities = () => {
-        return pokemonData.map((abilityObj, index) => (
+    const renderAbilities = (habilities: Ability[]) => {
+        return habilities.map((abilityObj, index) => (
             <div key={index}>
                 <b>Habilidad:</b> {abilityObj.ability.name}
                 <br />
@@ -34,12 +35,7 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
     };
 
     return (
-        <div>
-
-            <button
-                onClick={() => onClick(id)}
-                className="boton-pokemon"
-            >
+        <div className="boton-pokemon">
                 <div>
                     <b>Nombre:</b> {name}
                 </div>
@@ -47,16 +43,27 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
                     <b>URL:</b> <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
                 </div>
                 <div>
-                    <b>Habilidades del Pokemon:</b> {pokemonData.length > 0 ? renderAbilities() : "Cargando..."}
+                    <b>Habilidades del Pokemon:</b> {pokemonData?.habilities.length! > 0 ? renderAbilities(pokemonData?.habilities!) : "Cargando..."}
                 </div>
                 <div>
                     <b>Veces usado:</b> {usageCount}
                 </div>
+                <div>
+                    <b>Sprite default:</b><br />
+                    {pokemonData?.sprites.front_default && (
+                        <img src={pokemonData.sprites.front_default} alt={name} width={96} height={96} />
+                    )}
+                </div>
+                <div>
+                    <b>Sprite shiny:</b><br />
+                    {pokemonData?.sprites.front_shiny && (
+                        <img src={pokemonData.sprites.front_shiny} alt={name} width={96} height={96} />
+                    )}
+                </div>
                 <Link href={`/pokemon/${id}`} className="detalle-button">
                     Ver detalles
                 </Link>
-                
-            </button>
+                <FavoriteButton id={id} name={name} sprite={pokemonData?.sprites.front_default!} />
         </div>
 
     );
