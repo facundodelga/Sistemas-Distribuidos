@@ -1,4 +1,5 @@
 
+import { FavoriteButton } from '@/app/components/FavoriteButton';
 import NavBar from '@/app/NavBar';
 import { Pokemon } from '@/app/Pokemon';
 import React from 'react'
@@ -10,7 +11,6 @@ interface PokemonProps {
 const PokemonDetail = ({ pokemon }: PokemonProps) => {
   return (
     <>
-    <NavBar />
     <main className="pokemon-wrapper">
       <section className="pokemon-card">
         <header className="pokemon-header">
@@ -77,6 +77,7 @@ const PokemonDetail = ({ pokemon }: PokemonProps) => {
             </ul>
           </div>
         </div>
+        <FavoriteButton id={pokemon.id} name={pokemon.name} sprite={pokemon.sprites.front_default} />
       </section>
     </main>
     </>

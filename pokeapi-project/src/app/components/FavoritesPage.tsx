@@ -1,23 +1,27 @@
 // app/favorites/page.tsx
 "use client";
 import { useFavorites } from "@/app/hooks/useFavorites";
-import { FavoriteButton } from "@/app/components/FavoriteButton";
+import FavoriteItem from "./FavoriteItem";
 
 export default function FavoritesPage() {
-    const { data, isLoading, isError } = useFavorites();
-    if (isLoading) return <p>Cargando...</p>;
-    if (isError) return <p>Error al cargar favoritos</p>;
+    const { data} = useFavorites();
     if (!data?.length) return <p>Sin favoritos</p>;
 
     return (
-        <ul>
-            {data.map(f => (
-                <li key={f.id}>
-                    <img src={f.sprite} alt={f.name} width={56} height={56} />
-                    <span>{f.name}</span>
-                    <FavoriteButton id={f.id} name={f.name} sprite={f.sprite} />
-                </li>
-            ))}
-        </ul>
+        <div className="pokemon-container">
+            <h2>Listado de Pokemons Favoritos</h2>
+            {data &&
+                <ul className='pokemon-list'>
+                    {data?.map(pokemon => (
+                        <li key={pokemon.name}>
+                            <FavoriteItem
+                                pokemon={pokemon}
+                            />
+                        </li>
+                    ))}
+                </ul>
+            }
+
+        </div>
     );
 }

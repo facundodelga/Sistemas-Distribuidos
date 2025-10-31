@@ -8,6 +8,9 @@ const NavBar = () => {
             <Link href="/" className='nav-bar-item'>
                 Inicio
             </Link>
+            <Link href="/favorites" className='nav-bar-item'>
+                Favoritos
+            </Link>
         </nav>
     </div>
         

@@ -1,10 +1,14 @@
 
 import React from 'react'
 
-const LoadingPage = () => {
+type LoadingPageProps = {
+  message?: string;
+}
+
+const LoadingPage = ({ message }: LoadingPageProps) => {
   return (
     <div className="loading">
-      <p>Cargando Pokemons...</p>
+      <p>{message || "Cargando Pokemons..."}</p>
     </div>
   )
 }

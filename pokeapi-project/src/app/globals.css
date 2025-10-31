@@ -99,7 +99,9 @@ h2{
   box-shadow:0 6px 16px rgba(0,0,0,0.12);
 }
 
+
 .boton-pokemon{
+  position: relative;    
   background-color:var(--primary-600);
   border:1px solid var(--primary-700);
   color:#fff; text-align:left; display:inline-block; font-size:18px; margin:8px 4px;
@@ -141,9 +143,28 @@ h2{
   box-shadow:none;
 }
 
-.favorito-button{
-  position:absolute; top:12px; right:12px; background:rgba(255,255,255,0.8);
-  border:none; border-radius:50%; padding:8px; cursor:pointer; transition:background .2s;
+.favorito-button {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background-color: var(--primary-400);
+  border: 1px solid var(--primary-700);
+  color: #fff;
+  border-radius: 12px;
+  padding: 8px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  text-transform: capitalize;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+}
+
+/* Hover similar a detalle-button */
+.favorito-button:hover {
+  background-color: #ffd700; /* dorado */
+  color: var(--text);
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
 }
 
 /* ===== Detalle de Pokémon ===== */
@@ -158,6 +179,7 @@ h2{
 
 /* Card */
 .pokemon-card{
+  position:relative;
   background:#fff; border-radius:20px; box-shadow:var(--shadow);
   border:1px solid var(--border);
   padding:2rem; max-width:600px; width:100%;
@@ -165,6 +187,25 @@ h2{
 }
 @keyframes fadeIn{
   from{opacity:0; transform:translateY(20px);} to{opacity:1; transform:translateY(0);}
+}
+
+.favorite-card {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background: white;
+}
+
+.favorite-card img {
+    border-radius: 4px;
+}
+
+.favorite-card span {
+    font-weight: 500;
+    text-transform: capitalize;
 }
 
 /* Header */

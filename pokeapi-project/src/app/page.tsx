@@ -6,13 +6,9 @@ import { PokemonListProvider } from "./contexts/usePokemonListContext";
 export default function Home() {
   return (
     <>
-    
-      <NavBar />
       <PokemonListProvider>
         <PokemonList />
       </PokemonListProvider>
-        
-      <Footer />
 
     </>
   );

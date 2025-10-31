@@ -36,34 +36,26 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
 
     return (
         <div className="boton-pokemon">
-                <div>
-                    <b>Nombre:</b> {name}
-                </div>
-                <div>
-                    <b>URL:</b> <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
-                </div>
-                <div>
-                    <b>Habilidades del Pokemon:</b> {pokemonData?.habilities.length! > 0 ? renderAbilities(pokemonData?.habilities!) : "Cargando..."}
-                </div>
-                <div>
-                    <b>Veces usado:</b> {usageCount}
-                </div>
-                <div>
-                    <b>Sprite default:</b><br />
-                    {pokemonData?.sprites.front_default && (
-                        <img src={pokemonData.sprites.front_default} alt={name} width={96} height={96} />
-                    )}
-                </div>
-                <div>
-                    <b>Sprite shiny:</b><br />
-                    {pokemonData?.sprites.front_shiny && (
-                        <img src={pokemonData.sprites.front_shiny} alt={name} width={96} height={96} />
-                    )}
-                </div>
-                <Link href={`/pokemon/${id}`} className="detalle-button">
-                    Ver detalles
-                </Link>
-                <FavoriteButton id={id} name={name} sprite={pokemonData?.sprites.front_default!} />
+            <b>Nombre:</b> {name}
+            <b>URL:</b> <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+            <b>Habilidades del Pokemon:</b> {pokemonData?.habilities.length! > 0 ? renderAbilities(pokemonData?.habilities!) : "Cargando..."}
+            <b>Veces usado:</b> {usageCount}
+            <div>
+                <b>Sprite default:</b><br />
+                {pokemonData?.sprites.front_default && (
+                    <img src={pokemonData.sprites.front_default} alt={name} width={96} height={96} />
+                )}
+            </div>
+            <div>
+                <b>Sprite shiny:</b><br />
+                {pokemonData?.sprites.front_shiny && (
+                    <img src={pokemonData.sprites.front_shiny} alt={name} width={96} height={96} />
+                )}
+            </div>
+            <Link href={`/pokemon/${id}`} className="detalle-button">
+                Ver detalles
+            </Link>
+            <FavoriteButton id={id} name={name} sprite={pokemonData?.sprites.front_default!} />
         </div>
 
     );

@@ -1,8 +1,14 @@
 [
   {
-    "id": 2,
-    "name": "ivysaur",
-    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/2.png",
-    "addedAt": "2025-10-21T23:36:51.769Z"
+    "id": 3,
+    "name": "venusaur",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/3.png",
+    "addedAt": "2025-10-31T21:35:52.188Z"
+  },
+  {
+    "id": 8,
+    "name": "wartortle",
+    "sprite": "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/8.png",
+    "addedAt": "2025-10-31T21:55:50.045Z"
   }
 ]

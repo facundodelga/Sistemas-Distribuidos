@@ -35,3 +35,9 @@ export type Pokemon = {
   types: { type: { name: string } }[];
   stats: { base_stat: number; stat: { name: string } }[];
 };
+
+export type FavoritePokemon = {
+    id: number;
+    name: string;
+    sprite: string;
+};
