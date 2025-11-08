@@ -35,9 +35,11 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
     };
 
     return (
-        <div className="boton-pokemon">
+        <div className="relative bg-primary-600 border border-primary-700 text-white inline-block text-lg my-2 mx-1 cursor-pointer rounded-2xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-all duration-200 capitalize w-[600px] h-[700px] p-6 hover:bg-primary-700 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]">
             <b>Nombre:</b> {name}
-            <b>URL:</b> <a href={url} target="_blank" rel="noopener noreferrer">{url}</a>
+            <br />
+            <b>URL:</b> <a href={url} target="_blank" rel="noopener noreferrer" className="text-white underline">{url}</a>
+            <br />
             <b>Habilidades del Pokemon:</b> {pokemonData?.habilities.length! > 0 ? renderAbilities(pokemonData?.habilities!) : "Cargando..."}
             <b>Veces usado:</b> {usageCount}
             <div>
@@ -52,7 +54,10 @@ const PokemonItem: React.FC<PokemonItemProps> = ({ pokemonItem, onClick, usageCo
                     <img src={pokemonData.sprites.front_shiny} alt={name} width={96} height={96} />
                 )}
             </div>
-            <Link href={`/pokemon/${id}`} className="detalle-button">
+            <Link 
+              href={`/pokemon/${id}`} 
+              className="bg-primary-400 border border-primary-700 text-white text-center inline-block text-base mt-2 cursor-pointer rounded-xl shadow-[0_2px_8px_rgba(0,0,0,0.08)] transition-all duration-200 px-4 no-underline hover:bg-primary-100 hover:text-gray-800 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-[0_6px_16px_rgba(0,0,0,0.12)]"
+            >
                 Ver detalles
             </Link>
             <FavoriteButton id={id} name={name} sprite={pokemonData?.sprites.front_default!} />

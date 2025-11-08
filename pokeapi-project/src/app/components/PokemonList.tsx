@@ -20,11 +20,11 @@ const PokemonList: React.FC = () => {
     };
 
     return (
-        <div className="pokemon-container">
+        <div className="max-w-[800px] mx-auto my-10 bg-gradient-to-br from-pokemon-water to-primary-700 rounded-2xl shadow-custom p-8 border border-gray-300">
             <h2>Listado de Pokemons</h2>
             {isLoading && <LoadingPage />}
             {pokemons &&
-                <ul className='pokemon-list'>
+                <ul className='list-none p-0 flex flex-wrap justify-center gap-4'>
                     {pokemons?.map(pokemon => (
                         <li key={pokemon.name}>
                             <PokemonItem

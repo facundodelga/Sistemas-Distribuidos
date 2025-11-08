@@ -12,7 +12,7 @@ export const favoritesService = {
         return res.data;
     },
 
-    add: async (fav: { id: number; name: string; sprite: string }): Promise<Favorite> => {
+    add: async (fav: { id: number; name: string; sprite: string; nombrePersonalizado: string; descripcion: string }): Promise<Favorite> => {
         try {
             const res = await api.post<Favorite>("/", fav);
             return res.data;

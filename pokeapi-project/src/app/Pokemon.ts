@@ -40,4 +40,6 @@ export type FavoritePokemon = {
     id: number;
     name: string;
     sprite: string;
+    nombrePersonalizado: string;
+    descripcion: string;
 };

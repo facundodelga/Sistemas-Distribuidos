@@ -3,18 +3,14 @@ import Link from 'next/link'
 
 const NavBar = () => {
   return (
-    <div>
-        <nav className='nav-bar'>
-            <Link href="/" className='nav-bar-item'>
-                Inicio
-            </Link>
-            <Link href="/favorites" className='nav-bar-item'>
-                Favoritos
-            </Link>
-        </nav>
-    </div>
-        
-    
+    <nav className='bg-primary-700 px-4 py-4 rounded-b-2xl text-center'>
+      <Link href="/" className='text-white no-underline text-lg mx-3 transition-colors duration-200 hover:text-primary-400'>
+        Inicio
+      </Link>
+      <Link href="/favorites" className='text-white no-underline text-lg mx-3 transition-colors duration-200 hover:text-primary-400'>
+        Favoritos
+      </Link>
+    </nav>
   )
 }
 

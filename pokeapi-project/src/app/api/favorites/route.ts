@@ -9,12 +9,18 @@ export async function GET() {
 export async function POST(req: Request) {
     try {
         const body = await req.json();
-        const { id, name, sprite } = body ?? {};
+        const { id, name, sprite, nombrePersonalizado, descripcion } = body ?? {};
 
         if (typeof id !== "number" || !name || !sprite) {
             return NextResponse.json({ error: "Campos requeridos: id, name, sprite" }, { status: 400 });
         }
-        const created = await favoritesDb.add({ id, name, sprite });
+        const created = await favoritesDb.add({ 
+            id, 
+            name, 
+            sprite, 
+            nombrePersonalizado: nombrePersonalizado || name,
+            descripcion: descripcion || ""
+        });
         if (!created) {
             return NextResponse.json({ error: "Ya existe en favoritos" }, { status: 409 });
         }

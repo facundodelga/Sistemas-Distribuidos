@@ -1,4 +1,3 @@
-
 import React from 'react'
 
 type LoadingPageProps = {
@@ -7,7 +6,7 @@ type LoadingPageProps = {
 
 const LoadingPage = ({ message }: LoadingPageProps) => {
   return (
-    <div className="loading">
+    <div className="text-center text-white text-xl mt-10 animate-fadeIn">
       <p>{message || "Cargando Pokemons..."}</p>
     </div>
   )

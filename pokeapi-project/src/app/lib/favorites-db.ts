@@ -8,13 +8,21 @@ export interface Favorite {
     id: number;
     name: string;
     sprite: string;
+    nombrePersonalizado: string;
+    descripcion: string;
     addedAt: string;
 }
 
 async function readDB(): Promise<Favorite[]> {
     try {
         const raw = await fs.readFile(DB_PATH, "utf-8");
-        return JSON.parse(raw);
+        const data = JSON.parse(raw);
+        // Migrar favoritos antiguos que no tienen los nuevos campos
+        return data.map((fav: any) => ({
+            ...fav,
+            nombrePersonalizado: fav.nombrePersonalizado || fav.name || "",
+            descripcion: fav.descripcion || "",
+        }));
     } catch {
         return [];
     }
@@ -35,7 +43,12 @@ export const favoritesDb = {
     async add(input: Omit<Favorite, "addedAt">) {
         const all = await readDB();
         if (all.some(f => f.id === input.id)) return null; // conflicto
-        const fav: Favorite = { ...input, addedAt: new Date().toISOString() };
+        const fav: Favorite = { 
+            ...input, 
+            nombrePersonalizado: input.nombrePersonalizado || input.name,
+            descripcion: input.descripcion || "",
+            addedAt: new Date().toISOString() 
+        };
         all.push(fav);
         await writeDB(all);
         return fav;
